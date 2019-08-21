@@ -10,3 +10,16 @@ rawdata {
         })()
     JS
 }
+
+updatedatetime {
+    exec = "SELECT name, datetime FROM updatedatetime"
+    transformer = <<JS
+        (function(){
+            $new = {};
+            for ( i in $result ) {
+                $new[$result[i].name] = $result[i].datetime;
+            }
+            return $new;
+        })()
+    JS
+}
