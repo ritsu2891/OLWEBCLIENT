@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import API from '~/components/API'
+
 export default {
   nsme: 'chart-js-graph',
   data: function() {
@@ -42,28 +44,20 @@ export default {
       }
     });
 
-    this.$axios.$get('http://localhost:8025/rawdata').then((res) => {
+    var chartUpdateFn = (res) => {
       var n = res.data.length;
       for (var i = 0; i < n; i++) {
         this.myChart.data.labels.push('');
         this.myChart.data.datasets[0].data.push(res.data[i]);
       }
       this.myChart.update();
-    });
+    };
 
-    // let self = this;
-    window.setInterval(() => {
-      this.myChart.data.labels = [];
-      this.myChart.data.datasets[0].data = [];
-      this.$axios.$get('http://localhost:8025/rawdata').then((res) => {
-        var n = res.data.length;
-        for (var i = 0; i < n; i++) {
-          this.myChart.data.labels.push('');
-          this.myChart.data.datasets[0].data.push(res.data[i]);
-        }
-        this.myChart.update();
-      });
-    }, 5000);
+    API.requestDBData('rawSignal', chartUpdateFn);
+
+    // window.setInterval(() => {
+    //   API.requestDBData('rawSignal', chartUpdateFn);
+    // }, 5000);
   }
 }
 </script>
