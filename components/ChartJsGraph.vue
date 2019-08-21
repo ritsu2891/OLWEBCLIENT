@@ -53,7 +53,7 @@ export default {
       this.myChart.update();
     };
 
-    API.requestDBData('rawSignal', chartUpdateFn);
+    API.requestDBData('rawSignal').then(chartUpdateFn);
 
     // window.setInterval(() => {
     //   API.requestDBData('rawSignal', chartUpdateFn);
