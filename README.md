@@ -1,5 +1,6 @@
 # OLWEBCLIENT
 Simple Data Graph Web Application with Nuxt.js
+
 DBに書き込んだデータをグラフで表示するWEBアプリケーションです。研究室で作成するデモに向けて作成しました。[OLCOMDIS](https://github.com/ritsu2891/OLCOMDIS)と一緒に使う事で、データロガーからデータを読み込みグラフで表示するまでの流れが出来上がります。本リポジトリにはフロントエンド部分のみをおいています。バックエンドは検証時には[SQLer](https://github.com/alash3al/sqler)を使っています。（設定ファイルはこのリポジトリの`backend/config.hcl`）
 
 ## 想定環境
