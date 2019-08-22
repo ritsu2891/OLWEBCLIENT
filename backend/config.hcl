@@ -23,3 +23,12 @@ updatedatetime {
         })()
     JS
 }
+
+ars {
+    exec = "SELECT data FROM ars"
+    transformer = <<JS
+        (function() {
+            return $result[$result.length-1];
+        })()
+    JS
+}
