@@ -1,4 +1,4 @@
-export default { init, shouldFetch, startManage }
+export default { init, shouldFetch, startManage, startManageV }
 
 import * as API from './API.js'
 
@@ -12,6 +12,7 @@ function init() {
 }
 
 async function shouldFetch(which) {
+    return true;
     var lUpdateDateTimeInfo = convertDateTime(await API.requestDBData(ENDPOINT));
     which = API.ENDPOINT[which];
     var res = updateDateTimeInfo[which] < lUpdateDateTimeInfo[which]
@@ -38,7 +39,6 @@ function replaceAll(chart, which) {
             chart.data.datasets[0].data.push(res.data[i]);
         }
         chart.update();
-        console.log('Updated!');
     });
 }
 
@@ -55,6 +55,35 @@ function startManage(chart, which, mode) {
       shouldFetch(which).then((res) => {
         if (res) { 
             updateFn(chart, which);
+        }
+      });
+    }, 5000);
+}
+
+// 一時措置
+function replaceAllV(vueObj, member, which) {
+    API.requestDBData(which).then((res) => {
+        var data = [];
+        data.push(res.data.data);
+        console.log(res);
+        vueObj.$set(member, 'data', data);
+        console.log('Updated! V');
+    });
+}
+
+function startManageV(vueObj, member, which, mode) {
+    switch (mode) {
+        case 'replaceAll':
+            var updateFn = replaceAllV;
+            break;
+        default:
+            return;
+    }
+    updateFn(vueObj, member, which);
+    window.setInterval(() => {
+      shouldFetch(which).then((res) => {
+        if (res) { 
+            updateFn(vueObj, member, which);
         }
       });
     }, 5000);

@@ -4,6 +4,7 @@ const APIURI = 'http://localhost:8025'
 export const ENDPOINT = {
     rawSignal: 'rawdata',
     updateDateTime: 'updatedatetime',
+    ars: 'ars',
 };
 
 function getUrl(which) {
