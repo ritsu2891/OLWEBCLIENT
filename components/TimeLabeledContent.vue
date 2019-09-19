@@ -1,8 +1,8 @@
 <template>
   <div class="timeLabeledContent">
-    <div class="row">
-      <div class="col-auto timeLabeledContent__icon">●</div>
-      <div class="col timeLabeledContent__time">LIVE</div>
+    <div class="row align-items-center">
+      <div class="col-auto timeLabeledContent__icon" :style="{color: iconTextColor}">{{icon}}</div>
+      <div class="col timeLabeledContent__time">{{time}}</div>
     </div>
     <Component :is="content"></Component>
   </div>
@@ -30,7 +30,8 @@
 
   &__icon {
     padding-right: 0;
-    font-size: 24px;
+    font-size: 50px;
+    line-height: 1;
     color: green;
   }
 }
@@ -48,7 +49,10 @@ export default {
   },
 
   props: {
-    content: { default: "div" }
-  }
+    content: { default: "div" },
+    time: { Type: String, default: "不明な時刻" },
+    icon: { Type: String, default: "●" },
+    iconTextColor: { type: String },
+  },
 };
 </script>
