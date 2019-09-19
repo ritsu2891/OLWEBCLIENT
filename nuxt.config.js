@@ -29,6 +29,7 @@ export default {
   ** Global CSS
   */
   css: [
+    '@/assets/scss/app.scss',
   ],
   /*
   ** Plugins to load before mounting the App
@@ -57,6 +58,7 @@ export default {
   ** Build configuration
   */
   build: {
+    vendor: ['pixi.js'],
     /*
     ** You can extend webpack config here
     */
