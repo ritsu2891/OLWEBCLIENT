@@ -4,29 +4,9 @@
       <div class="timeline">
         <canvas id="canvas"></canvas>
         <div class="statusInfoCardLine">
-          <div class="statusInfoCard">
-            <div class="row">
-              <div class="col-auto statusInfoCard__icon">●</div>
-              <div class="col statusInfoCard__time">LIVE</div>
-            </div>
-            <StatusInfo></StatusInfo>
-          </div>
-
-          <div class="statusInfoCard" style="margin-left: 200px;">
-            <div class="row">
-              <div class="col-auto statusInfoCard__icon">▲</div>
-              <div class="col statusInfoCard__time">14:52</div>
-            </div>
-            <StatusInfo></StatusInfo>
-          </div>
-
-          <div class="statusInfoCard" style="margin-left: 20px;">
-            <div class="row">
-              <div class="col-auto statusInfoCard__icon">▲</div>
-              <div class="col statusInfoCard__time">12:25</div>
-            </div>
-            <StatusInfo></StatusInfo>
-          </div>
+          <TimeLabeledContent content="StatusInfo"></TimeLabeledContent>
+          <TimeLabeledContent content="StatusInfo"></TimeLabeledContent>
+          
         </div>
       </div>
     </div>
@@ -36,10 +16,11 @@
 import * as PIXI from "pixi.js";
 
 import StatusInfo from "~/components/StatusInfo.vue";
+import TimeLabeledContent from "~/components/TimeLabeledContent.vue";
 
 export default {
   components: {
-    StatusInfo,
+    StatusInfo, TimeLabeledContent
   },
   mounted: function() {
     let app = new PIXI.Application({
@@ -119,18 +100,6 @@ export default {
 };
 </script>
 <style lang="scss">
-.statusInfoCard {
-  &__time {
-    padding-right: 0;
-    font-size: 24px;
-  }
-  &__icon {
-    padding-right: 0;
-    font-size: 24px;
-    color: green;
-  }
-}
-
 .timelineContainer {
   overflow: scroll;
   height: 700px;
@@ -143,25 +112,5 @@ export default {
 .statusInfoCardLine {
   position: relative;
   top: -65px;
-}
-
-.statusInfoCard {
-  &::before {
-    content: "";
-    height: 50px;
-    border-left: 3px solid black;
-    position: relative;
-    left: 45px;
-    top: 5px;
-    display: inline-block;
-  }
-  //   background-color: green;
-  width: 400px;
-  height: 200px;
-  float: left;
-}
-
-.statusInfoCard + .statusInfoCard {
-  margin-left: 5px;
 }
 </style>
