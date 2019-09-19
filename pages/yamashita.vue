@@ -4,8 +4,8 @@
       <div class="timeline">
         <canvas id="canvas"></canvas>
         <div class="statusInfoCardLine">
-          <TimeLabeledContent content="StatusInfo"></TimeLabeledContent>
-          <TimeLabeledContent content="StatusInfo"></TimeLabeledContent>
+          <TimeLabeledContent time="LIVE" content="StatusInfo"></TimeLabeledContent>
+          <TimeLabeledContent time="17:45" content="StatusInfo" icon="▲" icon-text-color="red"></TimeLabeledContent>
           
         </div>
       </div>
