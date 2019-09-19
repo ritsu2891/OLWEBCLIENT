@@ -9,10 +9,7 @@
               <div class="col-auto statusInfoCard__icon">●</div>
               <div class="col statusInfoCard__time">LIVE</div>
             </div>
-            <div class="statusInfo shadow">
-              <div class="statusInfo__status">問題なし</div>
-              <div class="statusInfo__description">列車に異常は検知されていません</div>
-            </div>
+            <StatusInfo></StatusInfo>
           </div>
 
           <div class="statusInfoCard" style="margin-left: 200px;">
@@ -20,10 +17,7 @@
               <div class="col-auto statusInfoCard__icon">▲</div>
               <div class="col statusInfoCard__time">14:52</div>
             </div>
-            <div class="statusInfo shadow">
-              <div class="statusInfo__status">問題なし</div>
-              <div class="statusInfo__description">列車に異常は検知されていません</div>
-            </div>
+            <StatusInfo></StatusInfo>
           </div>
 
           <div class="statusInfoCard" style="margin-left: 20px;">
@@ -31,10 +25,7 @@
               <div class="col-auto statusInfoCard__icon">▲</div>
               <div class="col statusInfoCard__time">12:25</div>
             </div>
-            <div class="statusInfo shadow">
-              <div class="statusInfo__status">問題なし</div>
-              <div class="statusInfo__description">列車に異常は検知されていません</div>
-            </div>
+            <StatusInfo></StatusInfo>
           </div>
         </div>
       </div>
@@ -44,7 +35,12 @@
 <script>
 import * as PIXI from "pixi.js";
 
+import StatusInfo from "~/components/StatusInfo.vue";
+
 export default {
+  components: {
+    StatusInfo,
+  },
   mounted: function() {
     let app = new PIXI.Application({
       width: 1300,
@@ -132,20 +128,6 @@ export default {
     padding-right: 0;
     font-size: 24px;
     color: green;
-  }
-}
-
-.statusInfo {
-  margin-left: 30px;
-  padding: 25px;
-  background-color: rgb(245, 245, 245);
-
-  &__status {
-    font-size: 60px;
-    text-align: center;
-  }
-  &__description {
-    font-size: 30px;
   }
 }
 
