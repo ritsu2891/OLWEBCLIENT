@@ -8,9 +8,6 @@
   </div>
 </template>
 <style lang="scss">
-.statusInfoCard {
-}
-
 .timeLabeledContent {
   width: 400px;
   height: 200px;
@@ -27,7 +24,7 @@
   }
 
   &__time {
-    padding-right: 0;
+    padding-left: 8px;
     font-size: 24px;
   }
 
