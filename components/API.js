@@ -5,6 +5,7 @@ export const ENDPOINT = {
     rawSignal: 'rawdata',
     updateDateTime: 'updatedatetime',
     ars: 'ars',
+    ars2: 'ars2',
 };
 
 function getUrl(which) {

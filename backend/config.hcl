@@ -32,3 +32,12 @@ ars {
         })()
     JS
 }
+
+ars2 {
+    exec = "SELECT data FROM ars2"
+    transformer = <<JS
+        (function() {
+            return $result[$result.length-1];
+        })()
+    JS
+}

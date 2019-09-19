@@ -6,7 +6,8 @@
       </div>
     </div>
     <div class="row justify-content-md-center">
-      <value-card label="ARS"></value-card>
+      <value-card label="1人目 (呼吸間隔)"></value-card>
+      <value-card label="2人目 (呼吸間隔)" :n="2"></value-card>
     </div>
     <div style="height: 20px;"></div>
   </div>

@@ -64,10 +64,10 @@ function startManage(chart, which, mode) {
 function replaceAllV(vueObj, member, which) {
     API.requestDBData(which).then((res) => {
         var data = [];
-        data.push(res.data.data);
-        console.log(res);
+        if (res.data != undefined) {
+            data.push(res.data.data);
+        }
         vueObj.$set(member, 'data', data);
-        console.log('Updated! V');
     });
 }
 
