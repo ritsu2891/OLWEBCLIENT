@@ -4,7 +4,7 @@
       <div class="col-auto timeLabeledContent__icon" :style="{color: iconTextColor}">{{icon}}</div>
       <div class="col timeLabeledContent__time">{{time}}</div>
     </div>
-    <Component :is="content"></Component>
+    <Component :is="content" v-bind="contentAttr"></Component>
   </div>
 </template>
 <style lang="scss">
@@ -50,6 +50,7 @@ export default {
 
   props: {
     content: { default: "div" },
+    contentAttr: {},
     time: { Type: String, default: "不明な時刻" },
     icon: { Type: String, default: "●" },
     iconTextColor: { type: String },
