@@ -20,3 +20,8 @@ export async function requestDBData(which) {
     var res = await axios.get(getUrl(which));
     return res.data;
 }
+
+export async function postDataToDB(which, data) {
+    const res = await axios.post(getUrl(which), data);
+    return res.status;
+}
