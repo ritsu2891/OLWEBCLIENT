@@ -6,6 +6,10 @@ export const ENDPOINT = {
     updateDateTime: 'updatedatetime',
     ars: 'ars',
     ars2: 'ars2',
+    // S.YAMASHITA Train Wheel Obstacle Demo (ytw)
+    ytwStatus: 'ytw_status',
+    ytwObrangeReg: 'ytw_obrange_reg',
+    ytwObrange: 'ytw_obrange',
 };
 
 function getUrl(which) {
