@@ -23,8 +23,8 @@
   </div>
 </template>
 <script>
-import DLResultView from "~/components/DLResultView.vue";
-import AbnormalRangeMap from "~/components/AbnormalRangeMap.vue";
+import DLResultView from "~/components/SharedUIComponents/DLResultView.vue";
+import AbnormalRangeMap from "~/components/YTWUIComponents/AbnormalRangeMap.vue";
 
 export default {
   components: { DLResultView, AbnormalRangeMap },

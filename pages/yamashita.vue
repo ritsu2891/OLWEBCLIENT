@@ -15,11 +15,9 @@
         <div class="statusInfoCardLine">
           <transition-group name="fade">
             <TimeLabeledContent
-              v-for="(item, index) in timeline"
+              v-for="item in timeline"
               :key="`timelineitem${item.id}`"
               :time="item.time"
-              content="StatusInfo"
-              :contentAttr="item.contentAttr"
               :icon="item.icon"
               :icon-text-color="item.iconTextColor"
               :class="{'trans': trans}"
@@ -34,19 +32,15 @@
 import * as PIXI from "pixi.js";
 import Manager from "~/components/YTWManager.js";
 
-import StatusInfo from "~/components/StatusInfo.vue";
-import TimeLabeledContent from "~/components/TimeLabeledContent.vue";
-import MapTest from "~/components/MapTest.vue";
-import BaseMap from "~/components/BaseMap.vue";
-import LiveMap from "~/components/LiveMap.vue";
-import AbnormalRangeMap from "~/components/AbnormalRangeMap.vue";
+import StatusInfo from "~/components/SharedUIComponents/StatusInfo.vue";
+import TimeLabeledContent from "~/components/SharedUIComponents/TimeLabeledContent.vue";
+import LiveMap from "~/components/YTWUIComponents/LiveMap.vue";
+import AbnormalRangeMap from "~/components/YTWUIComponents/AbnormalRangeMap.vue";
 
 export default {
   components: {
     StatusInfo,
     TimeLabeledContent,
-    MapTest,
-    BaseMap,
     LiveMap,
     AbnormalRangeMap
   },

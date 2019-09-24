@@ -1,0 +1,79 @@
+<template>
+  <div style="width: 5000px">
+    <div :class="{'timeLine': true, 'timeLine--withbar': timebar}">
+      <transition-group name="fade">
+        <slot></slot>
+      </transition-group>
+    </div>
+  </div>
+</template>
+<style lang="scss">
+$pinLngth: 50px;
+
+.timeLine {
+  &--withbar {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: $pinLngth / 2;
+      width: 100%;
+      display: block;
+      border-top: 5px solid black;
+    }
+  }
+
+  & > * > * {
+    width: 400px;
+    float: left;
+    transition: transform 200ms 0s ease, opacity 200ms 100ms ease;
+
+    &::before {
+      content: "";
+      height: $pinLngth;
+      border-left: 3px solid black;
+      position: relative;
+      left: 20px;
+      top: 5px;
+      display: inline-block;
+    }
+
+    &.disableAnimate {
+      opacity: 0;
+      transition: none;
+    }
+
+    &.animate {
+      transform: translateX(-405px);
+      transition: none;
+    }
+  }
+}
+</style>
+<script>
+export default {
+  props: {
+    timebar: { type: Boolean, default: true }
+  },
+  computed: {
+    items: function() {
+      return this.$children[0].$children;
+    }
+  },
+  updated: function() {
+    const self = this;
+    var classChanger = function() {
+      self.items.forEach((item, index) => {
+        if (index == 0) {
+          item.$el.classList.toggle("disableAnimate");
+        } else {
+          item.$el.classList.toggle("animate");
+        }
+      });
+    };
+    classChanger();
+    setTimeout(classChanger, 10);
+  }
+};
+</script>

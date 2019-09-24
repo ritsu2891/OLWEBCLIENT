@@ -13,8 +13,8 @@
   </div>
 </template>
 <script>
-import ChartJsGraph from '~/components/ChartJsGraph.vue';
-import ValueCard from '~/components/ValueCard.vue';
+import ChartJsGraph from '~/components/SharedUIComponents/ChartJsGraph.vue';
+import ValueCard from '~/components/SharedUIComponents/ValueCard.vue';
 
 export default {
   components: {

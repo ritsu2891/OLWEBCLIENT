@@ -4,7 +4,7 @@
 <script>
 import * as turf from "@turf/turf";
 
-import BaseMap from "~/components/BaseMap.vue";
+import BaseMap from "~/components/YTWUIComponents/BaseMap.vue";
 
 export default {
   extends: BaseMap,
