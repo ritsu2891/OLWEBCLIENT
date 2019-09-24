@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <button v-on:click="add">追加</button>
+    <!-- <button v-on:click="add">追加</button> -->
     <div class="timeline">
       <LiveMap
         class="primaryMap"
@@ -8,6 +8,7 @@
         style="height: 600px; width: 100%;"
         :mapCenter="[136.893865, 35.157141]"
         :zoom="11.8"
+        ref="map"
       ></LiveMap>
       <div style="width: 5000px">
         <canvas id="canvas" style="margin-top: -340px;"></canvas>
@@ -31,6 +32,7 @@
 </template>
 <script>
 import * as PIXI from "pixi.js";
+import Manager from "~/components/YTWManager.js";
 
 import StatusInfo from "~/components/StatusInfo.vue";
 import TimeLabeledContent from "~/components/TimeLabeledContent.vue";
@@ -115,7 +117,7 @@ export default {
       }
     });
 
-    console.log(app.screen.width);
+    Manager.init(this);
 
     // app.stage.interactive = true;
     // app.stage.on("pointermove", () => {
@@ -126,7 +128,18 @@ export default {
   },
   data() {
     return {
-      timeline: [
+      id: 0,
+      latestId: -1,
+      startPt: undefined,
+      startDt: undefined,
+      timeline: [],
+      timelineBuffer: [],
+      trans: false,
+      fp: undefined,
+      pfp: undefined
+    };
+  },
+  /*
         {
           id: 34,
           time: "LIVE",
@@ -174,24 +187,62 @@ export default {
             }
           }
         }
-      ],
-      trans: false
-    };
-  },
+        */
   methods: {
-    add() {
-      this.trans = true;
-      const self = this;
-      setTimeout(function() {
-        self.trans = false;
-        self.timeline.unshift({
-          id: 31,
-          time: "LIVE",
-          icon: "●",
-          iconTextColor: "green",
-          contentAttr: { status: "正常" }
-        });
-      }, 300);
+    addItem(item) {
+      return new Promise((resolve, reject) => {
+        this.trans = true;
+        const self = this;
+        let id = this.id;
+        this.id += 1;
+        setTimeout(function() {
+          self.trans = false;
+          self.timeline.unshift(item);
+          resolve();
+        }, 250);
+      });
+    }
+  },
+  watch: {
+    timelineBuffer: function(newTL, oldTL) {
+      for (let i = this.latestId + 1; i < this.timelineBuffer.length; i++) {
+        const item = this.timelineBuffer[i];
+
+        //TODO: 故障検知区間は将来追加されるであろうリアクティブオブジェクトにデータを追加する必要があるため、非常にややこしい。解決の目処が立たないため、開発を保留する。
+
+        //正常->異常
+        // if (
+        //   i > 0 &&
+        //   this.timelineBuffer[i - 1].status == 0 &&
+        //   item.status == 1
+        // ) {
+        //   this.startPt = this.$refs.map.dotPosition;
+        //   this.startDt = new Date();
+        // }
+
+        //故障->正常
+        // if (
+        //   i > 0 &&
+        //   this.timelineBuffer[i - 1].status == 1 &&
+        //   item.status == 0
+        // ) {
+        //   this.$set(this.timelineBuffer[i-1]["contentAttr"]["rangeDataSet"], {
+        //     startPos: this.startPt,
+        //     endPos: this.$refs.map.dotPosition
+        //   });
+        // }
+
+        if (!this.fp) {
+          this.fp = this.addItem(item);
+        } else {
+          //TODO: ここの動きの解明
+          let self = this;
+          this.fp = this.fp.then(function() {
+            return this.addItem(item);
+          });
+        }
+      }
+      this.latestId = this.timelineBuffer.length - 1;
     }
   }
 };
