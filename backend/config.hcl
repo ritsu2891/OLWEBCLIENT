@@ -41,3 +41,25 @@ ars2 {
         })()
     JS
 }
+
+// S.YAMASHITA Train Wheel Monitoring Demo (YTW)
+//Status and Obstacle Item Detection
+ytw_status {
+    exec = "SELECT * FROM ytw_status"
+}
+
+ytw_obrange_reg {
+    methods = ["POST"]
+    bind {
+        status_id = "$input.status_id"
+        startdt = "$input.startdt"
+        enddt = "$input.enddt"
+        startpt = "$input.startpt"
+        endpt = "$input.endpt"
+    }
+    exec = "INSERT INTO ytw_obrange(status_id, startdt, enddt, startpt, endpt) VALUES(:status_id, :startdt, :enddt, :startpt, :endpt)"
+}
+
+ytw_obrange {
+    exec = "SELECT * FROM ytw_obrange"
+}
