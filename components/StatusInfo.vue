@@ -12,13 +12,13 @@
     </div>
     <hr v-if="dlDataSet" />
     <DLResultView v-bind="dlDataSet" v-if="dlDataSet"></DLResultView>
-    <hr v-if="rangeDataSet" />
+    <hr v-if="/*rangeDataSet*/ dlDataSet" />
     <AbnormalRangeMap
       :zoom="10"
       style="height: 200px;"
-      :start-pos="rangeDataSet.startPos"
-      :end-pos="rangeDataSet.endPos"
-      v-if="rangeDataSet"
+      :start-pos="/*rangeDataSet.startPos*/ [136.90104246139526, 35.142985260896246]"
+      :end-pos="/*rangeDataSet.endPos*/ [136.9568967819214, 35.134001045788104]"
+      v-if="/*rangeDataSet*/ dlDataSet"
     ></AbnormalRangeMap>
   </div>
 </template>
