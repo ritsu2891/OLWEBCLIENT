@@ -21,18 +21,24 @@
 
     <h1>ValueCrad</h1>
 
-    <ValueCard :label="テスト項目" val="129.2s"></ValueCard>
-    <ValueCard :label="テスト項目" val="29.2s" class="shadow bg-light m-3" style="width: 400px; display: inline-block;"></ValueCard>
-    <ValueCard :label="テスト項目" val="29.2s" class="shadow bg-light m-3" style="width: 400px; display: inline-block;"></ValueCard>
+    <ValueCard label="テスト項目" val="129.2s"></ValueCard>
+    <ValueCard label="テスト項目" val="29.2s" class="shadow bg-light m-3" style="width: 400px; display: inline-block;"></ValueCard>
+    <ValueCard label="テスト項目" val="29.2s" class="shadow bg-light m-3" style="width: 400px; display: inline-block;"></ValueCard>
+
+    <h1>Switch</h1>
+    <FPSwitch></FPSwitch>
+
+    <div style="margin-bottom: 2000px"></div>
   </div>
 </template>
 <script>
 import TimeLabeledContent from "~/components/SharedUIComponents/TimeLabeledContent.vue";
 import TimeLine from "~/components/SharedUIComponents/TimeLine.vue";
 import ValueCard from "~/components/SharedUIComponents/ValueCard.vue";
+import FPSwitch from "~/components/SharedUIComponents/FPSwitch.vue";
 
 export default {
-  components: { TimeLabeledContent, TimeLine, ValueCard },
+  components: { TimeLabeledContent, TimeLine, ValueCard, FPSwitch },
   data: function() {
     return {
       timelineItem: [1, 2, 3]
