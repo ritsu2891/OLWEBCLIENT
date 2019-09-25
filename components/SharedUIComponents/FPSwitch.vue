@@ -1,0 +1,85 @@
+<template>
+  <div class="FPSwitch row">
+    <div
+      :class="{ 'FPSwitch__item': true, 'FPSwitch__item--active': item.id == activeId, 'col': true}"
+      v-for="item in items"
+      :key="item.id"
+      :id="`switem${item.id}`"
+      v-on:click="changeLinkHilight(item.id, true)"
+    >{{item.label}}</div>
+    <div class="FPSwitch__hilight" id="Hilighter"></div>
+  </div>
+</template>
+<script>
+export default {
+  data: function() {
+    return {
+      items: [
+        { id: 0, label: "警戒", color: "linear-gradient(135deg, #ff3019 0%,#cf0404 100%)" },
+        { id: 1, label: "解除", color: "linear-gradient(135deg, #22b09c 0%, #00b050 100%)" }
+      ],
+      activeId: 0
+    };
+  },
+  mounted: function() {
+    this.changeLinkHilight(0, false);
+  },
+  methods: {
+    changeLinkHilight: function(id, animate) {
+      const padding = 0;
+
+      const hilighter = document.getElementById("Hilighter");
+      const targetLink = document.getElementById(`switem${id}`);
+
+      let tX = hilighter.style.transform.match(/translateX\((-?[0-9.]+)(px)\)/);
+      tX = tX ? parseInt(tX[1]) : 0;
+
+      if (animate) {
+        hilighter.style.transition = "all 200ms ease";
+      } else {
+        hilighter.style.transition = "";
+      }
+
+      const diff =
+        targetLink.clientWidth -
+        hilighter.clientWidth +
+        tX +
+        targetLink.getBoundingClientRect().left -
+        hilighter.getBoundingClientRect().left +
+        padding;
+
+      hilighter.style.width = `${targetLink.clientWidth + padding * 2}px`;
+      hilighter.style.height = `${targetLink.clientHeight + padding * 2}px`;
+      hilighter.style.transform = `translateX(${diff}px)`;
+      hilighter.style.background = this.items[id].color;
+
+      this.activeId = id;
+    }
+  }
+};
+</script>
+<style lang="scss">
+.FPSwitch {
+  position: relative;
+  &__item {
+    font-size: 45px;
+    transition: all 200ms ease;
+
+    & + & {
+      margin-left: 20px;
+    }
+  }
+  &__item--active {
+    color: white;
+    font-weight: 800;
+  }
+  &__hilight {
+    position: absolute;
+    right: 0;
+    height: 0px;
+    width: 0px;
+    // background: linear-gradient(to bottom, #22b09c 0%, #00b050 100%);
+    z-index: -1;
+  }
+}
+</style>
