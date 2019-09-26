@@ -3,7 +3,7 @@
     <div class="col align-self-center" style>
       <div class="valueCard__label">{{label}}</div>
       <div class="valueCard__val" :id="`value-${label}`">
-        {{val}}
+        {{val ? val : "---"}}
         <span class="valueCard__unit">{{unit}}</span>
       </div>
     </div>
@@ -19,7 +19,7 @@ export default {
       type: String,
       default: "ARS"
     },
-    val: { default: "---" },
+    val: { default: undefined },
     unit: { default: "" }
   }
 };
