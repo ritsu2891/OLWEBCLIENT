@@ -1,5 +1,7 @@
 export { TFSManager }
 
+import { DateTime } from "luxon";
+
 import * as API from "~/components/API.js"
 
 const STATUS = {
@@ -21,6 +23,7 @@ class TFSManager {
     const self = this;
     API.requestDBData('tfs').then(function (res) {
       for (let data of res.data) {
+        data.datetime = DateTime.fromSQL(data.datetime).toLocaleString(DateTime.TIME_24_SIMPLE);
         self.dest.timeline.unshift(data);
       }
       self.lastid = res.data[res.data.length - 1].id;
@@ -33,6 +36,7 @@ class TFSManager {
       if (res.data.length > 0) {
         for (let data of res.data) {
           API.postDataToDB('tfsStatusReg', {id: data.id, status: self.status});
+          data.datetime = DateTime.fromSQL(data.datetime).toLocaleString(DateTime.TIME_24_SIMPLE);
           data.status = self.status;
           self.dest.timeline.unshift(data);
         }
