@@ -7,7 +7,7 @@
           <FPSwitch class="m-0" v-model="currentStatus"></FPSwitch>
         </div>
         <div class="shadow bg-light p-3 my-4">
-          <ValueCard label="検出人数" :val="`${live.data}人`"></ValueCard>
+          <ValueCard label="検出人数" :val="live.data" unit="人"></ValueCard>
         </div>
       </div>
       <div style="width: 100%; overflow-x: scroll;">
@@ -20,7 +20,7 @@
             icon-text-color="red"
           >
             <div class="shadow bg-light p-3">
-              <ValueCard label="検出人数" :val="`${item.data}人`"></ValueCard>
+              <ValueCard label="検出人数" :val="item.data" unit="人"></ValueCard>
             </div>
           </TimeLabeledContent>
         </TimeLine>
