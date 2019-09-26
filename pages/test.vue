@@ -75,6 +75,15 @@
     <FPSwitch v-model="switchSelect2" :items="switchConfig2"></FPSwitch>
 
     <hr />
+    <h1>DLResultView</h1>
+    <div class="shadow bg-light m-3 p-3" style="width: 400px; display: inline-block;">
+      <DLResultView :labels="dl.labels" :images="dl.images" :datas="[80, 10, 10]"></DLResultView>
+    </div>
+    <div class="shadow bg-light m-3 p-3" style="width: 400px; display: inline-block;">
+      <DLResultView :labels="dl.labels" :images="dl.images" :datas="[15, 75, 10]"></DLResultView>
+    </div>
+
+    <hr />
     <H1>TFS</H1>
     <h2>HumanPict</h2>
 
@@ -93,6 +102,7 @@ import TimeLine from "~/components/SharedUIComponents/TimeLine.vue";
 import ValueCard from "~/components/SharedUIComponents/ValueCard.vue";
 import StatusInfo from "~/components/SharedUIComponents/StatusInfo.vue";
 import FPSwitch from "~/components/SharedUIComponents/FPSwitch.vue";
+import DLResultView from "~/components/SharedUIComponents/DLResultView.vue";
 import HumanPict from "~/components/TFSUIComponents/HumanPict.vue";
 
 export default {
@@ -102,7 +112,8 @@ export default {
     StatusInfo,
     ValueCard,
     FPSwitch,
-    HumanPict
+    HumanPict,
+    DLResultView
   },
   data: function() {
     return {
@@ -138,7 +149,11 @@ export default {
           label: "FFT",
           color: "linear-gradient(135deg, #67a31a 0%,#24b58e 100%)"
         }
-      ]
+      ],
+      dl: {
+        labels: ["抵抗", "針金", "その他"],
+        images: ["/抵抗.jpg", "/針金.png", ""]
+      }
     };
   },
   methods: {
