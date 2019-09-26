@@ -12,12 +12,9 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
-<<<<<<< HEAD
     "@turf/turf": "^5.1.6",
     "luxon": "^1.19.2",
     "mapbox-gl": "^1.3.1",
-=======
->>>>>>> parent of 899208f... [Add] Map View
     "node-sass": "^4.12.0",
     "nuxt": "^2.0.0",
     "pixi-ease": "^2.4.1",
