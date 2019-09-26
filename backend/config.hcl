@@ -63,3 +63,16 @@ ytw_obrange_reg {
 ytw_obrange {
     exec = "SELECT * FROM ytw_obrange"
 }
+
+//K.TSUJI Footsteps sound Security Demo (TFS)
+tfs {
+    exec = "SELECT * FROM tfs"
+}
+
+tfs_new {
+    methods = ["POST"]
+    bind {
+        id = "$input.id"
+    }
+    exec = "SELECT * FROM tfs WHERE id > :id"
+}
