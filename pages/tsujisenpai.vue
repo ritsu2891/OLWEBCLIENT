@@ -61,12 +61,6 @@ export default {
     currentStatus: function() {
       this.manager.status = this.currentStatus;
     },
-    live: function() {
-      console.log(this.live);
-    },
-    timeline: function() {
-      console.log(this.timeline);
-    }
   },
   mounted: function() {
     this.manager = new TFSManager(this.currentStatus, this);
