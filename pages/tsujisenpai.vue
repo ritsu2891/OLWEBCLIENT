@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div style="position: relative;">
-      <HumanPict :nPerson="live.data"></HumanPict>
+      <HumanPict :nPerson="live.data ? live.data : 0"></HumanPict>
       <div style="width: 400px; position: absolute; right: 0; top: 0;">
         <div class="shadow bg-light p-2" style="width: 400px;">
           <FPSwitch class="m-0" v-model="currentStatus"></FPSwitch>
@@ -43,10 +43,7 @@ export default {
   data: function() {
     return {
       manager: undefined,
-      timeline: [
-        { id: "a", status: 0, data: 1, datetime: new Date() },
-        { id: "b", status: 1, data: 2, datetime: new Date() }
-      ],
+      timeline: [{id: 'd', data: undefined}],
       currentStatus: 1
     };
   },
