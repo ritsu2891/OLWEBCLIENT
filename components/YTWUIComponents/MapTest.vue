@@ -148,10 +148,10 @@ export default {
   },
   mounted() {
     mapboxgl.accessToken =
-      "pk.eyJ1Ijoicml0c3UyODkxIiwiYSI6ImNrMHZxNWlpMTAzbGszbnFlamE3bTFpdHMifQ.FsosPJOruJyWoJyS2ntRdQ";
+      "";
     map = new mapboxgl.Map({
       container: "mymap",
-      style: "mapbox://styles/ritsu2891/ck0vq7zk672no1cmoyu9p25q8",
+      style: "",
       center: [136.929865, 35.157141],
       zoom: 12
     });
