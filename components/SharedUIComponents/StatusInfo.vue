@@ -1,25 +1,15 @@
 <template>
-  <div class="statusInfo shadow">
+  <div class="statusInfo">
     <div class="statusInfo__status">{{status}}</div>
     <hr v-if="detail" />
     <div class="row align-items-center" v-if="detail">
       <div class="col-auto pr-3" v-if="detailImage">
         <img class="statusInfo__image" :src="detailImage" />
       </div>
-      <div class="col pl-0">
+      <div class="col">
         <div class="statusInfo__description">{{detail}}</div>
       </div>
     </div>
-    <hr v-if="dlDataSet" />
-    <DLResultView v-bind="dlDataSet" v-if="dlDataSet"></DLResultView>
-    <hr v-if="/*rangeDataSet*/ dlDataSet" />
-    <AbnormalRangeMap
-      :zoom="10"
-      style="height: 200px;"
-      :start-pos="/*rangeDataSet.startPos*/ [136.90104246139526, 35.142985260896246]"
-      :end-pos="/*rangeDataSet.endPos*/ [136.9568967819214, 35.134001045788104]"
-      v-if="/*rangeDataSet*/ dlDataSet"
-    ></AbnormalRangeMap>
   </div>
 </template>
 <script>
@@ -32,17 +22,11 @@ export default {
     status: { type: String, default: "状況不明" },
     detail: { type: String }, //車輪に異物が挟まっている可能性があります
     detailImage: { type: String }, ///wheelzoom.png
-    dlDataSet: {},
-    rangeDataSet: {}
   }
 };
 </script>
 <style lang="scss">
 .statusInfo {
-  margin-left: 30px;
-  padding: 25px;
-  background-color: rgb(245, 245, 245);
-
   &__status {
     font-size: 60px;
     text-align: center;
