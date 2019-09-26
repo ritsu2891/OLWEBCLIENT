@@ -12,7 +12,7 @@
       </div>
       <TimeLine>
         <TimeLabeledContent
-          v-for="item in timeline"
+          v-for="item in aleratTimeline"
           :key="`tli${item.id}`"
           :time="item.datetime"
           icon="▲"
@@ -42,19 +42,24 @@ export default {
       manager: undefined,
       timeline: [
         { id: "a", status: 0, data: 1, datetime: new Date() },
-        { id: "b", status: 0, data: 1, datetime: new Date() }
+        { id: "b", status: 1, data: 2, datetime: new Date() }
       ],
-      currentStatus: 1
+      currentStatus: 1,
     };
   },
   computed: {
     live: function() {
       return this.timeline[0];
+    },
+    aleratTimeline: function () {
+      return this.timeline.filter(function (item) {
+        return item.status == 0;
+      })
     }
   },
   watch: {
     currentStatus: function() {
-      console.log(this.currentStatus);
+      this.manager.status = this.currentStatus;
     },
     live: function() {
       console.log(this.live);

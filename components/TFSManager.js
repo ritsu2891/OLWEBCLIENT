@@ -32,6 +32,8 @@ class TFSManager {
     API.requestNewDBData('tfs', this.lastid).then(function (res) {
       if (res.data.length > 0) {
         for (let data of res.data) {
+          API.postDataToDB('tfsStatusReg', {id: data.id, status: self.status});
+          data.status = self.status;
           self.dest.timeline.unshift(data);
         }
         self.lastid = res.data[res.data.length - 1].id;
