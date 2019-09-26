@@ -4,7 +4,7 @@
       <HumanPict :nPerson="live.data ? live.data : 0"></HumanPict>
       <div style="width: 400px; position: absolute; right: 0; top: 0;">
         <div class="shadow bg-light p-2" style="width: 400px;">
-          <FPSwitch class="m-0" v-model="currentStatus"></FPSwitch>
+          <FPSwitch class="m-0" v-model="currentStatus" :items="switchConfig"></FPSwitch>
         </div>
         <div class="shadow bg-light p-3 my-4">
           <ValueCard label="検出人数" :val="live.data" unit="人"></ValueCard>
@@ -36,7 +36,7 @@ import ValueCard from "~/components/SharedUIComponents/ValueCard.vue";
 import FPSwitch from "~/components/SharedUIComponents/FPSwitch.vue";
 import HumanPict from "~/components/TFSUIComponents/HumanPict.vue";
 
-import { TFSManager } from "~/components/TFSManager.js";
+import * as TFS from "~/components/TFSManager.js";
 
 export default {
   components: { TimeLine, TimeLabeledContent, ValueCard, FPSwitch, HumanPict },
@@ -44,7 +44,8 @@ export default {
     return {
       manager: undefined,
       timeline: [{id: 'd', data: undefined}],
-      currentStatus: 1
+      currentStatus: 1,
+      switchConfig: TFS.STATUS,
     };
   },
   computed: {
@@ -63,7 +64,7 @@ export default {
     }
   },
   mounted: function() {
-    this.manager = new TFSManager(this.currentStatus, this);
+    this.manager = new TFS.TFSManager(this.currentStatus, this);
     this.manager.getAll();
     window.setInterval(() => {
       this.manager.getNew();
