@@ -13,11 +13,12 @@
 
     <TimeLine>
       <TimeLabeledContent v-for="(item, idx) in timelineItem" :key="`tli${idx}`">
-        <ValueCard class="shadow bg-light m-3"></ValueCard>
+        <ValueCard class="shadow bg-light m-3" :val="timelineItem[idx]"></ValueCard>
       </TimeLabeledContent>
     </TimeLine>
 
     <button v-on:click="addTimelineItem">追加</button>
+    <button v-on:click="changeValue">変更</button>
 
     <h1>ValueCrad</h1>
 
@@ -63,12 +64,16 @@ export default {
   },
   data: function() {
     return {
-      timelineItem: [1, 2, 3]
+      timelineItem: [1, 2, 3],
     };
   },
   methods: {
     addTimelineItem: function() {
-      this.timelineItem.push(9);
+      this.timelineItem.unshift(9);
+    },
+    changeValue: function() {
+      this.timelineItem.splice(1, 1, 10);
+      console.log(this.timelineItem);
     }
   }
 };
