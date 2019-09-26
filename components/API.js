@@ -10,6 +10,7 @@ export const ENDPOINT = {
     ytwStatus: 'ytw_status',
     ytwObrangeReg: 'ytw_obrange_reg',
     ytwObrange: 'ytw_obrange',
+    tfs: 'tfs',
 };
 
 function getUrl(which) {
@@ -18,6 +19,11 @@ function getUrl(which) {
 
 export async function requestDBData(which) {
     var res = await axios.get(getUrl(which));
+    return res.data;
+}
+
+export async function requestNewDBData(which, id) {
+    const res = await axios.post(getUrl(which) + "_new", {"id": id});
     return res.data;
 }
 
