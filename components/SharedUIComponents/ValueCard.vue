@@ -1,8 +1,12 @@
 <template>
   <div class="row valueCard">
-    <div class="col align-self-center" style>
+    <div
+      :class="{'col-5': small, 'col-12': !small, 'align-self-center': true}"
+    >
       <div class="valueCard__label">{{label}}</div>
-      <div class="valueCard__val" :id="`value-${label}`">
+    </div>
+    <div :class="{'col-7': small, 'col-12': !small, 'align-self-center': true}">
+      <div :class="{'valueCard__val': true, 'valueCard__val--small': small}" :id="`value-${label}`">
         {{val ? val : "---"}}
         <span class="valueCard__unit">{{unit}}</span>
       </div>
@@ -20,7 +24,8 @@ export default {
       default: "ARS"
     },
     val: { default: undefined },
-    unit: { default: "" }
+    unit: { default: "" },
+    small: { type: Boolean, default: false }
   }
 };
 </script>
@@ -40,6 +45,9 @@ export default {
   }
   &__val {
     font-size: 150px;
+    &--small {
+      font-size: 80px;
+    }
   }
   &__unit {
     font-size: 50px;
