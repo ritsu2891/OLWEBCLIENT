@@ -2,7 +2,10 @@
   <div class="row valueCard">
     <div class="col align-self-center" style>
       <div class="valueCard__label">{{label}}</div>
-      <div class="valueCard__val" :id="`value-${label}`">{{val}}</div>
+      <div class="valueCard__val" :id="`value-${label}`">
+        {{val}}
+        <span class="valueCard__unit"></span>
+      </div>
     </div>
   </div>
 </template>
@@ -14,10 +17,11 @@ export default {
   props: {
     label: {
       type: String,
-      default: 'ARS'
+      default: "ARS"
     },
-    val: { default: '---' }
-  },
+    val: { default: "---" },
+    unit: { default: "" }
+  }
 };
 </script>
 <style lang="scss">
@@ -36,6 +40,9 @@ export default {
   }
   &__val {
     font-size: 150px;
+  }
+  &__unit {
+    font-size: 50px;
   }
 }
 </style>
