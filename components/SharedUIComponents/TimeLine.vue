@@ -53,6 +53,11 @@ $pinLngth: 50px;
 </style>
 <script>
 export default {
+  data: function() {
+    return {
+      nItems: 0
+    };
+  },
   props: {
     timebar: { type: Boolean, default: true }
   },
@@ -61,19 +66,25 @@ export default {
       return this.$children[0].$children;
     }
   },
+  mounted: function() {
+    this.nItems = this.items.length;
+  },
   updated: function() {
-    const self = this;
-    var classChanger = function() {
-      self.items.forEach((item, index) => {
-        if (index == 0) {
-          item.$el.classList.toggle("disableAnimate");
-        } else {
-          item.$el.classList.toggle("animate");
-        }
-      });
-    };
-    classChanger();
-    setTimeout(classChanger, 10);
+    if (this.items.length > this.nItems) {
+      const self = this;
+      var classChanger = function() {
+        self.items.forEach((item, index) => {
+          if (index == 0) {
+            item.$el.classList.toggle("disableAnimate");
+          } else {
+            item.$el.classList.toggle("animate");
+          }
+        });
+      };
+      classChanger();
+      setTimeout(classChanger, 10);
+    }
+    this.nItems = this.items.length;
   }
 };
 </script>
