@@ -4,7 +4,7 @@
       <div class="valueCard__label">{{label}}</div>
       <div class="valueCard__val" :id="`value-${label}`">
         {{val}}
-        <span class="valueCard__unit"></span>
+        <span class="valueCard__unit">{{unit}}</span>
       </div>
     </div>
   </div>
