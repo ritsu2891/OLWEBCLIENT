@@ -79,7 +79,7 @@ function buildTimelineItem(data) {
 }
 
 function addItemToTimeline(item) {
-  vueObj.timelineBuffer.push(item);
+  vueObj.timelineBuffer.unshift(item);
 }
 
 function init(_vueObj) {
