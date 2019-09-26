@@ -1,7 +1,7 @@
 <template>
   <div class="FPSwitch row">
     <div
-      :class="{ 'FPSwitch__item': true, 'FPSwitch__item--active': item.id == activeId, 'col': true}"
+      :class="{ 'FPSwitch__item': true, 'FPSwitch__item--active': item.id == value, 'col': true}"
       v-for="item in items"
       :key="item.id"
       :id="`switem${item.id}`"
@@ -18,11 +18,13 @@ export default {
         { id: 0, label: "警戒", color: "linear-gradient(135deg, #ff3019 0%,#cf0404 100%)" },
         { id: 1, label: "解除", color: "linear-gradient(135deg, #22b09c 0%, #00b050 100%)" }
       ],
-      activeId: 0
+      activeId: 0,
     };
   },
+  props: ['value'],
   mounted: function() {
-    this.changeLinkHilight(0, false);
+    this.activeId = this.value;
+    this.changeLinkHilight(this.activeId, false);
   },
   methods: {
     changeLinkHilight: function(id, animate) {
@@ -54,6 +56,7 @@ export default {
       hilighter.style.background = this.items[id].color;
 
       this.activeId = id;
+      this.$emit('input', this.activeId);
     }
   }
 };
