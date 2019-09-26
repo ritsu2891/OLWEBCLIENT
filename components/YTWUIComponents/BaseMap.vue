@@ -4,6 +4,7 @@
 <script>
 import mapboxgl from "mapbox-gl";
 import * as turf from "@turf/turf";
+import * as KEY from "~/components/KEY.js";
 
 //名城線の路線図
 const meijoLine = [
@@ -95,8 +96,8 @@ export default {
       routeLine: meijoLine,
       routeLineColor: "#808080",
       routeLineWidth: 3,
-      accessToken: "",
-      style: ""
+      accessToken: KEY.MAPBOX_API_KEY,
+      style: KEY.MAPBOX_STYLE_API
     };
   },
   computed: {
