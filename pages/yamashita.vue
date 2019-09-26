@@ -9,7 +9,7 @@
       :zoom="11.8"
       ref="map"
     ></LiveMap>
-    <div style="margin-top: -330px;">
+    <div style="margin-top: -330px; width: 100%; overflow-x: scroll;">
       <TrainPict></TrainPict>
       <TimeLine style="margin-top: -70px;" :timebar="false">
         <TimeLabeledContent
