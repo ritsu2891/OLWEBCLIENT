@@ -95,9 +95,8 @@ export default {
       routeLine: meijoLine,
       routeLineColor: "#808080",
       routeLineWidth: 3,
-      accessToken:
-        "pk.eyJ1Ijoicml0c3UyODkxIiwiYSI6ImNrMHZxNWlpMTAzbGszbnFlamE3bTFpdHMifQ.FsosPJOruJyWoJyS2ntRdQ",
-      style: "mapbox://styles/ritsu2891/ck0vq7zk672no1cmoyu9p25q8"
+      accessToken: "",
+      style: ""
     };
   },
   computed: {
