@@ -4,10 +4,10 @@
       :class="{ 'FPSwitch__item': true, 'FPSwitch__item--active': item.id == value, 'col': true}"
       v-for="item in items"
       :key="item.id"
-      :id="`switem${item.id}`"
+      :id="`switem${id}${item.id}`"
       v-on:click="changeLinkHilight(item.id, true)"
     >{{item.label}}</div>
-    <div class="FPSwitch__hilight" id="Hilighter"></div>
+    <div class="FPSwitch__hilight" :id="`FPSwitchHilighter${id}`"></div>
   </div>
 </template>
 <script>
@@ -15,6 +15,7 @@ export default {
   data: function() {
     return {
       activeId: 0,
+      id: this._uid,
     };
   },
   props: ['value', 'items'],
@@ -26,8 +27,8 @@ export default {
     changeLinkHilight: function(id, animate) {
       const padding = 0;
 
-      const hilighter = document.getElementById("Hilighter");
-      const targetLink = document.getElementById(`switem${id}`);
+      const hilighter = document.getElementById(`FPSwitchHilighter${this.id}`);
+      const targetLink = document.getElementById(`switem${this.id}${id}`);
 
       let tX = hilighter.style.transform.match(/translateX\((-?[0-9.]+)(px)\)/);
       tX = tX ? parseInt(tX[1]) : 0;
