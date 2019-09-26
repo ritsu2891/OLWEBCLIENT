@@ -1,18 +1,28 @@
 <template>
   <div class="container">
     <!-- <button v-on:click="add">追加</button> -->
-    <div class="timeline">
-      <LiveMap
-        class="primaryMap"
-        width="100%"
-        style="height: 600px; width: 100%;"
-        :mapCenter="[136.893865, 35.157141]"
-        :zoom="11.8"
-        ref="map"
-      ></LiveMap>
-      <div style="width: 5000px">
-        <canvas id="canvas" style="margin-top: -340px;"></canvas>
-        <div class="statusInfoCardLine">
+    <LiveMap
+      class="primaryMap"
+      width="100%"
+      style="height: 600px; width: 100%;"
+      :mapCenter="[136.893865, 35.157141]"
+      :zoom="11.8"
+      ref="map"
+    ></LiveMap>
+    <div style="margin-top: -330px;">
+      <TrainPict></TrainPict>
+      <TimeLine style="margin-top: -70px;" :timebar="false">
+        <TimeLabeledContent
+          v-for="item in timelineBuffer"
+          :key="`tli${item.id}`"
+          :time="item.time"
+          :icon="item.icon"
+          :icon-text-color="item.iconTextColor"
+        ></TimeLabeledContent>
+      </TimeLine>
+    </div>
+
+    <!-- <div class="statusInfoCardLine">
           <transition-group name="fade">
             <TimeLabeledContent
               v-for="item in timeline"
@@ -23,17 +33,16 @@
               :class="{'trans': trans}"
             ></TimeLabeledContent>
           </transition-group>
-        </div>
-      </div>
-    </div>
+    </div>-->
   </div>
 </template>
 <script>
-import * as PIXI from "pixi.js";
 import Manager from "~/components/YTWManager.js";
 
 import StatusInfo from "~/components/SharedUIComponents/StatusInfo.vue";
+import TimeLine from "~/components/SharedUIComponents/TimeLine.vue";
 import TimeLabeledContent from "~/components/SharedUIComponents/TimeLabeledContent.vue";
+import TrainPict from "~/components/YTWUIComponents/TrainPict.vue";
 import LiveMap from "~/components/YTWUIComponents/LiveMap.vue";
 import AbnormalRangeMap from "~/components/YTWUIComponents/AbnormalRangeMap.vue";
 
@@ -41,84 +50,13 @@ export default {
   components: {
     StatusInfo,
     TimeLabeledContent,
+    TimeLine,
+    TrainPict,
     LiveMap,
     AbnormalRangeMap
   },
   mounted: function() {
-    let app = new PIXI.Application({
-      width: 1300,
-      height: 380,
-      antialias: true,
-      view: document.getElementById("canvas"),
-      //   backgroundColor: 0xdddddd,
-      // backgroundColor: 0xffffff
-      transparent: true
-    });
-
-    function addWheel(x, y) {
-      const wheel = PIXI.Sprite.from("/wheel.png");
-      wheel.x = x;
-      wheel.y = y;
-      wheel.height = 50;
-      wheel.width = 50;
-      wheel.anchor.set(0.5, 0.5);
-      app.stage.addChild(wheel);
-
-      app.ticker.add(delta => {
-        wheel.rotation -= 5 * PIXI.DEG_TO_RAD;
-      });
-    }
-
-    addWheel(85, 315);
-    addWheel(160, 315);
-    addWheel(320, 315);
-    addWheel(395, 315);
-
-    const sprite = PIXI.Sprite.from("./train2.png");
-    sprite.x = 10;
-    sprite.y = 10;
-    app.stage.addChild(sprite);
-
-    app.ticker.add(delta => {
-      sprite.y = 10 + (Math.random() - 0.5) * 2;
-    });
-
-    const railwayWidth = 400;
-
-    function addRailway() {
-      const railway = new PIXI.Graphics();
-      railway.beginFill(0x000000);
-      railway.drawRect(-railwayWidth, 340, railwayWidth, 10);
-      railway.closePath();
-      railway.endFill();
-      app.stage.addChild(railway);
-      return railway;
-    }
-
-    var railways = [];
-    railways.push(addRailway());
-
-    app.ticker.add(delta => {
-      railways.forEach((railway, index) => {
-        railway.x += delta * 3;
-        if (railway.x > app.screen.width + railwayWidth) {
-          app.stage.removeChild(railway);
-          railways.splice(index, 1);
-        }
-      });
-      if (railways[0].x > railwayWidth + 10) {
-        railways.unshift(addRailway());
-      }
-    });
-
     Manager.init(this);
-
-    // app.stage.interactive = true;
-    // app.stage.on("pointermove", () => {
-    //   var x = app.renderer.plugins.interaction.mouse.global.x;
-    //   var y = app.renderer.plugins.interaction.mouse.global.y;
-    //   console.log(`${x}, ${y}`);
-    // });
   },
   data() {
     return {
@@ -226,15 +164,15 @@ export default {
         //   });
         // }
 
-        if (!this.fp) {
-          this.fp = this.addItem(item);
-        } else {
-          //TODO: ここの動きの解明
-          let self = this;
-          this.fp = this.fp.then(function() {
-            return this.addItem(item);
-          });
-        }
+        // if (!this.fp) {
+        //   this.fp = this.addItem(item);
+        // } else {
+        //   //TODO: ここの動きの解明
+        //   let self = this;
+        //   this.fp = this.fp.then(function() {
+        //     return self.addItem(item);
+        //   });
+        // }
       }
       this.latestId = this.timelineBuffer.length - 1;
     }
