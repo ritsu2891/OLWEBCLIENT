@@ -64,6 +64,7 @@ export default {
   &__item {
     font-size: 45px;
     transition: all 200ms ease;
+    z-index: 6;
 
     & + & {
       margin-left: 20px;
@@ -79,7 +80,7 @@ export default {
     height: 0px;
     width: 0px;
     // background: linear-gradient(to bottom, #22b09c 0%, #00b050 100%);
-    z-index: -1;
+    z-index: 5;
   }
 }
 </style>

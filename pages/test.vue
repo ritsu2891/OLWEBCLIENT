@@ -10,7 +10,7 @@
     </TimeLabeledContent>
 
     <h1>TimeLine</h1>
-    
+
     <TimeLine>
       <TimeLabeledContent v-for="(item, idx) in timelineItem" :key="`tli${idx}`">
         <ValueCard class="shadow bg-light m-3"></ValueCard>
@@ -22,11 +22,26 @@
     <h1>ValueCrad</h1>
 
     <ValueCard label="テスト項目" val="129.2s"></ValueCard>
-    <ValueCard label="テスト項目" val="29.2s" class="shadow bg-light m-3" style="width: 400px; display: inline-block;"></ValueCard>
-    <ValueCard label="テスト項目" val="29.2s" class="shadow bg-light m-3" style="width: 400px; display: inline-block;"></ValueCard>
+    <ValueCard
+      label="テスト項目"
+      val="29.2s"
+      class="shadow bg-light m-3"
+      style="width: 400px; display: inline-block;"
+    ></ValueCard>
+    <ValueCard
+      label="テスト項目"
+      val="29.2s"
+      class="shadow bg-light m-3"
+      style="width: 400px; display: inline-block;"
+    ></ValueCard>
 
     <h1>Switch</h1>
     <FPSwitch></FPSwitch>
+
+    <H1>TFS</H1>
+    <h2>HumanPictCanvas</h2>
+
+    <HumanPict></HumanPict>
 
     <div style="margin-bottom: 2000px"></div>
   </div>
@@ -36,16 +51,23 @@ import TimeLabeledContent from "~/components/SharedUIComponents/TimeLabeledConte
 import TimeLine from "~/components/SharedUIComponents/TimeLine.vue";
 import ValueCard from "~/components/SharedUIComponents/ValueCard.vue";
 import FPSwitch from "~/components/SharedUIComponents/FPSwitch.vue";
+import HumanPict from "~/components/TFSUIComponents/HumanPict.vue";
 
 export default {
-  components: { TimeLabeledContent, TimeLine, ValueCard, FPSwitch },
+  components: {
+    TimeLabeledContent,
+    TimeLine,
+    ValueCard,
+    FPSwitch,
+    HumanPict
+  },
   data: function() {
     return {
       timelineItem: [1, 2, 3]
     };
   },
   methods: {
-    addTimelineItem: function () {
+    addTimelineItem: function() {
       this.timelineItem.push(9);
     }
   }
