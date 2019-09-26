@@ -10,19 +10,22 @@
           <ValueCard label="検出人数" :val="`${live.data}人`"></ValueCard>
         </div>
       </div>
-      <TimeLine>
-        <TimeLabeledContent
-          v-for="item in aleratTimeline"
-          :key="`tli${item.id}`"
-          :time="item.datetime"
-          icon="▲"
-          icon-text-color="red"
-        >
-          <div class="shadow bg-light p-3">
-            <ValueCard label="検出人数" :val="`${item.data}人`"></ValueCard>
-          </div>
-        </TimeLabeledContent>
-      </TimeLine>
+      <div style="width: 100%; overflow-x: scroll;">
+        <TimeLine>
+          <TimeLabeledContent
+            v-for="item in aleratTimeline"
+            :key="`tli${item.id}`"
+            :time="item.datetime"
+            icon="▲"
+            icon-text-color="red"
+          >
+            <div class="shadow bg-light p-3">
+              <ValueCard label="検出人数" :val="`${item.data}人`"></ValueCard>
+            </div>
+          </TimeLabeledContent>
+        </TimeLine>
+      </div>
+      <div class="mt-3"></div>
     </div>
   </div>
 </template>
@@ -44,29 +47,30 @@ export default {
         { id: "a", status: 0, data: 1, datetime: new Date() },
         { id: "b", status: 1, data: 2, datetime: new Date() }
       ],
-      currentStatus: 1,
+      currentStatus: 1
     };
   },
   computed: {
     live: function() {
       return this.timeline[0];
     },
-    aleratTimeline: function () {
-      return this.timeline.filter(function (item) {
+    aleratTimeline: function() {
+      return this.timeline.filter(function(item) {
         return item.status == 0;
-      })
+      });
     }
   },
   watch: {
     currentStatus: function() {
       this.manager.status = this.currentStatus;
-    },
+    }
   },
   mounted: function() {
     this.manager = new TFSManager(this.currentStatus, this);
     this.manager.getAll();
-    window.setInterval(() => {this.manager.getNew()}, 1000);
-    
+    window.setInterval(() => {
+      this.manager.getNew();
+    }, 1000);
   }
 };
 </script>
