@@ -76,3 +76,12 @@ tfs_new {
     }
     exec = "SELECT * FROM tfs WHERE id > :id"
 }
+
+tfs_status_reg {
+    mtshods = ["POST"]
+    bind {
+        id = "$input.id"
+        status = "$input.status"
+    }
+    exec = "UPDATE tfs SET status = :status WHERE id = :id"
+}

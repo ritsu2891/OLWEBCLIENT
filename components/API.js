@@ -11,6 +11,7 @@ export const ENDPOINT = {
     ytwObrangeReg: 'ytw_obrange_reg',
     ytwObrange: 'ytw_obrange',
     tfs: 'tfs',
+    tfsStatusReg: 'tfs_status_reg',
 };
 
 function getUrl(which) {
@@ -28,6 +29,7 @@ export async function requestNewDBData(which, id) {
 }
 
 export async function postDataToDB(which, data) {
+    console.log(getUrl(which));
     const res = await axios.post(getUrl(which), data);
     return res.status;
 }
