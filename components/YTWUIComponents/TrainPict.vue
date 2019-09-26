@@ -10,7 +10,7 @@ export default {
   data: function() {
     return {
       el: "TrainPict",
-      VW: 800,
+      VW: 5000,
       VH: 380,
       app: undefined,
       railwayWidth: 400,
