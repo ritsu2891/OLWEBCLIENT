@@ -1,8 +1,8 @@
 <template>
   <div>
     <canvas id="HumanPictCanvas"></canvas>
-    <button v-on:click="nPerson++">追加</button>
-    <button v-on:click="nPerson--">削除</button>
+    <!-- <button v-on:click="nPerson++">追加</button>
+    <button v-on:click="nPerson--">削除</button> -->
   </div>
 </template>
 <script>
@@ -16,12 +16,14 @@ export default {
     return {
       app: undefined,
       persons: [],
-      nPerson: 0,
       VW: 1000,
       VH: 550,
       personTextureHeight: 256,
-      personTextureWidth: 140,
+      personTextureWidth: 140
     };
+  },
+  props: {
+    nPerson: { type: Number, default: 0 }
   },
   computed: {
     personXPos: function() {
@@ -173,15 +175,26 @@ export default {
   },
   watch: {
     nPerson: function(newN, oldN) {
+      const diff = newN - oldN;
+      const duration = 10;
       if (newN < 0) {
         return;
       }
-      if (newN > oldN) {
-        this.relocatePerson();
-        this.addPerson();
-      } else {
-        this.removePerson();
-        this.relocatePerson();
+      if (diff > 0) {
+        for (let i = 0; i < diff; i++) {
+          setTimeout(() => {
+            this.relocatePerson();
+            this.addPerson();
+          }, duration * i);
+        }
+      }
+      if (diff < 0) {
+        for (let i = 0; i < -diff; i++) {
+          setTimeout(() => {
+            this.removePerson();
+            this.relocatePerson();
+          }, duration * i);
+        }
       }
     }
   }
