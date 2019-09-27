@@ -48,6 +48,14 @@ ytw_status {
     exec = "SELECT * FROM ytw_status"
 }
 
+ytw_status_new {
+    methods = ["POST"]
+    bind {
+        id = "$input.id"
+    }
+    exec = "SELECT * FROM ytw_status WHERE id > :id"
+}
+
 ytw_obrange_reg {
     methods = ["POST"]
     bind {
