@@ -73,6 +73,7 @@
     <h1>Switch</h1>
     <FPSwitch v-model="switchSelect" :items="switchConfig"></FPSwitch>
     <FPSwitch v-model="switchSelect2" :items="switchConfig2"></FPSwitch>
+    <FPSwitch v-model="switchSelect3" :items="switchConfig2" :vertical="true"></FPSwitch>
 
     <hr />
     <h1>DLResultView</h1>
@@ -120,6 +121,7 @@ export default {
       timelineItem: [1, 2, 3],
       switchSelect: 0,
       switchSelect2: 0,
+      switchSelect3: 0,
       nPerson: 0,
       switchConfig: [
         {

@@ -1,7 +1,7 @@
 <template>
   <div class="FPSwitch row">
     <div
-      :class="{ 'FPSwitch__item': true, 'FPSwitch__item--active': item.id == value, 'col': true}"
+      :class="{ 'FPSwitch__item': true, 'FPSwitch__item--vertical': vertical, 'FPSwitch__item--active': item.id == value, 'col': !vertical, 'col-12': vertical}"
       v-for="item in items"
       :key="item.id"
       :id="`switem${id}${item.id}`"
@@ -15,10 +15,10 @@ export default {
   data: function() {
     return {
       activeId: 0,
-      id: this._uid,
+      id: this._uid
     };
   },
-  props: ['value', 'items'],
+  props: { value: {}, items: {}, vertical: { type: Boolean, default: false } },
   mounted: function() {
     this.activeId = this.value;
     this.changeLinkHilight(this.activeId, false);
@@ -31,7 +31,9 @@ export default {
       const targetLink = document.getElementById(`switem${this.id}${id}`);
 
       let tX = hilighter.style.transform.match(/translateX\((-?[0-9.]+)(px)\)/);
+      let tY = hilighter.style.transform.match(/translateY\((-?[0-9.]+)(px)\)/);
       tX = tX ? parseInt(tX[1]) : 0;
+      tY = tY ? parseInt(tY[1]) : 0;
 
       if (animate) {
         hilighter.style.transition = "all 200ms ease";
@@ -39,7 +41,10 @@ export default {
         hilighter.style.transition = "";
       }
 
-      const diff =
+      hilighter.style.width = `${targetLink.clientWidth + padding * 2}px`;
+      hilighter.style.height = `${targetLink.clientHeight + padding * 2}px`;
+
+      const diffX =
         targetLink.clientWidth -
         hilighter.clientWidth +
         tX +
@@ -47,13 +52,19 @@ export default {
         hilighter.getBoundingClientRect().left +
         padding;
 
-      hilighter.style.width = `${targetLink.clientWidth + padding * 2}px`;
-      hilighter.style.height = `${targetLink.clientHeight + padding * 2}px`;
-      hilighter.style.transform = `translateX(${diff}px)`;
+      const diffY =
+        targetLink.clientHeight -
+        hilighter.clientHeight +
+        tY +
+        targetLink.getBoundingClientRect().top -
+        hilighter.getBoundingClientRect().top +
+        padding;
+
+      hilighter.style.transform = `translateX(${diffX}px) translateY(${diffY}px)`;
       hilighter.style.background = this.items[id].color;
 
       this.activeId = id;
-      this.$emit('input', this.activeId);
+      this.$emit("input", this.activeId);
     }
   }
 };
@@ -68,6 +79,10 @@ export default {
 
     & + & {
       margin-left: 20px;
+    }
+
+    &--vertical + &--vertical {
+      margin-left: 0;
     }
   }
   &__item--active {
