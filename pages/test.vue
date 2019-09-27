@@ -43,6 +43,15 @@
       <ValueCard label="推定人数" val="1" unit="人" :small="true"></ValueCard>
     </div>
 
+    <ValueCard
+      label="呼吸間隔"
+      val="29.2"
+      unit="s"
+      class="shadow bg-light m-3 p-5"
+      style="width: 500px; display: inline-block;"
+      :badge="{label: 'LIVE', color: 'red'}"
+    ></ValueCard>
+
     <hr />
     <h1>StatusInfo</h1>
     <StatusInfo
