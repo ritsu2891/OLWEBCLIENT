@@ -20,7 +20,8 @@
             icon-text-color="red"
           >
             <div class="shadow bg-light p-3">
-              <ValueCard label="検出人数" :val="item.data" unit="人"></ValueCard>
+              <StatusInfo detail="警戒セット中に人の歩行を検知しました。" detailImage="warning.png" ></StatusInfo>
+              <ValueCard label="検出人数" :val="item.data" unit="人" :small="true"></ValueCard>
             </div>
           </TimeLabeledContent>
         </TimeLine>
@@ -30,6 +31,7 @@
   </div>
 </template>
 <script>
+import StatusInfo from "~/components/SharedUIComponents/StatusInfo.vue";
 import TimeLabeledContent from "~/components/SharedUIComponents/TimeLabeledContent.vue";
 import TimeLine from "~/components/SharedUIComponents/TimeLine.vue";
 import ValueCard from "~/components/SharedUIComponents/ValueCard.vue";
@@ -39,7 +41,7 @@ import HumanPict from "~/components/TFSUIComponents/HumanPict.vue";
 import * as TFS from "~/components/TFSManager.js";
 
 export default {
-  components: { TimeLine, TimeLabeledContent, ValueCard, FPSwitch, HumanPict },
+  components: { StatusInfo, TimeLine, TimeLabeledContent, ValueCard, FPSwitch, HumanPict },
   data: function() {
     return {
       manager: undefined,
