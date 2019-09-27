@@ -1,7 +1,7 @@
 <template>
   <div class="statusInfo">
-    <div class="statusInfo__status">{{status}}</div>
-    <hr v-if="detail" />
+    <div v-if="status" class="statusInfo__status">{{status}}</div>
+    <hr v-if="status && detail" />
     <div class="row align-items-center" v-if="detail">
       <div class="col-auto pr-3" v-if="detailImage">
         <img class="statusInfo__image" :src="detailImage" />
@@ -19,7 +19,7 @@ import AbnormalRangeMap from "~/components/YTWUIComponents/AbnormalRangeMap.vue"
 export default {
   components: { DLResultView, AbnormalRangeMap },
   props: {
-    status: { type: String, default: "状況不明" },
+    status: { type: String },
     detail: { type: String }, //車輪に異物が挟まっている可能性があります
     detailImage: { type: String }, ///wheelzoom.png
   }
