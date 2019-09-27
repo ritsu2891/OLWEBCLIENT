@@ -1,14 +1,36 @@
 <template>
-  <div class="row valueCard">
-    <div
-      :class="{'col-5': small, 'col-12': !small, 'align-self-center': true}"
-    >
-      <div class="valueCard__label">{{label}}</div>
+  <div>
+    <div class="valueCard" v-if="!small">
+      <div class="row">
+        <div class="col align-self-center">
+          <div class="valueCard__label" :style="{'text-align': badge ? 'left' : ''}">{{label}}</div>
+        </div>
+        <div class="col-auto">
+          <div
+            v-if="badge"
+            :style="{color: badge.color, border: `3px solid ${badge.color}`}"
+            class="valueCard__badge"
+          >{{badge.label}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 align-self-center">
+          <div class="valueCard__val" :id="`value-${label}`">
+            {{val ? val : "---"}}
+            <span class="valueCard__unit">{{unit}}</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div :class="{'col-7': small, 'col-12': !small, 'align-self-center': true}">
-      <div :class="{'valueCard__val': true, 'valueCard__val--small': small}" :id="`value-${label}`">
-        {{val ? val : "---"}}
-        <span class="valueCard__unit">{{unit}}</span>
+    <div class="row valueCard" v-if="small">
+      <div class="col-5 align-self-center">
+        <div class="valueCard__label">{{label}}</div>
+      </div>
+      <div class="col-7 align-self-center">
+        <div class="valueCard__val valueCard__val--small" :id="`value-${label}`">
+          {{val ? val : "---"}}
+          <span class="valueCard__unit">{{unit}}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -25,7 +47,8 @@ export default {
     },
     val: { default: undefined },
     unit: { default: "" },
-    small: { type: Boolean, default: false }
+    small: { type: Boolean, default: false },
+    badge: {}
   }
 };
 </script>
@@ -43,6 +66,9 @@ export default {
   &__label {
     font-size: 30px;
   }
+  &__badge ~ &__label {
+    text-align: left;
+  }
   &__val {
     font-size: 150px;
     &--small {
@@ -51,6 +77,12 @@ export default {
   }
   &__unit {
     font-size: 50px;
+  }
+  &__badge {
+    padding: 5px 10px;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 5px;
   }
 }
 </style>
