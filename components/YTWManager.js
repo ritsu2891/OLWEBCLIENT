@@ -2,14 +2,10 @@ export { YTWManager, STATUS, DL, STATUS_NORMAL, STATUS_OBSTACLE }
 
 import { DateTime } from "luxon";
 
-import * as API from './API.js'
 import { BaseManager } from "~/components/BaseManager.js"
 
 const STATUS_NORMAL = 0;
 const STATUS_OBSTACLE = 1;
-
-let latestId = -1;
-let vueObj = undefined;
 
 const STATUS = {
   0: {
