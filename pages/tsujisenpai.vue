@@ -1,13 +1,13 @@
 <template>
   <div class="container">
     <div style="position: relative;">
-      <HumanPict :nPerson="live.data ? live.data : 0"></HumanPict>
+      <HumanPict :nPerson="live && live.data ? live.data : 0"></HumanPict>
       <div style="width: 400px; position: absolute; right: 0; top: 0;">
         <div class="shadow bg-light p-2" style="width: 400px;">
           <FPSwitch class="m-0" v-model="currentStatus" :items="switchConfig"></FPSwitch>
         </div>
         <div class="shadow bg-light p-3 my-4">
-          <ValueCard label="検出人数" :val="live.data" unit="人"></ValueCard>
+          <ValueCard label="検出人数" :val="live && live.data ? live.data : undefined" unit="人"></ValueCard>
         </div>
       </div>
       <div style="width: 100%; overflow-x: scroll;">
@@ -44,13 +44,15 @@ export default {
   components: { StatusInfo, TimeLine, TimeLabeledContent, ValueCard, FPSwitch, HumanPict },
   data: function() {
     return {
-      manager: undefined,
-      timeline: [{id: 'd', data: undefined}],
+      manager: new TFS.TFSManager(this.currentStatus),
       currentStatus: 1,
       switchConfig: TFS.STATUS,
     };
   },
   computed: {
+    timeline: function() {
+      return this.manager.data.tfs.reverse();
+    },
     live: function() {
       return this.timeline[0];
     },
@@ -66,11 +68,7 @@ export default {
     }
   },
   mounted: function() {
-    this.manager = new TFS.TFSManager(this.currentStatus, this);
-    this.manager.getAll();
-    window.setInterval(() => {
-      this.manager.getNew();
-    }, 1000);
+    this.manager.run();
   }
 };
 </script>
