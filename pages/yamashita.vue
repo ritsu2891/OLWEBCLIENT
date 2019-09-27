@@ -15,19 +15,19 @@
         <TimeLabeledContent
           v-for="item in timelineBuffer"
           :key="`tli${item.id}`"
-          :time="item.time"
-          :icon="item.icon"
-          :icon-text-color="item.iconTextColor"
+          :time="item.datetime"
+          :icon="STATUS[item.status].icon"
+          :icon-text-color="STATUS[item.status].iconTextColor"
           class="mr-3"
         >
           <div class="p-3 m-1 bg-light shadow" style="width: 400px;">
             <StatusInfo
-              :status="item.contentAttr.status"
-              :detail="item.contentAttr.detail"
-              :detailImage="item.contentAttr.detailImage"
+              :status="STATUS[item.status].status"
+              :detail="STATUS[item.status].detail"
+              :detailImage="STATUS[item.status].status.detailImage"
             ></StatusInfo>
 
-            <DLResultView v-if="item.contentAttr.dlDataSet" v-bind="item.contentAttr.dlDataSet"></DLResultView>
+            <DLResultView v-if="item.obstacle" :labels="DL.labels" :images="DL.images" :datas="item.obstacle"></DLResultView>
           </div>
         </TimeLabeledContent>
       </TimeLine>
@@ -35,7 +35,7 @@
   </div>
 </template>
 <script>
-import Manager from "~/components/YTWManager.js";
+import * as YTW from "~/components/YTWManager.js";
 
 import StatusInfo from "~/components/SharedUIComponents/StatusInfo.vue";
 import DLResultView from "~/components/SharedUIComponents/DLResultView.vue";
@@ -55,21 +55,28 @@ export default {
     LiveMap,
     AbnormalRangeMap
   },
-  mounted: function() {
-    Manager.init(this);
-  },
   data() {
     return {
       id: 0,
       latestId: -1,
-      timelineBuffer: [],
+      manager: new YTW.YTWManager(),
+      DL: YTW.DL,
+      STATUS: YTW.STATUS,
     };
+  },
+  computed: {
+    timelineBuffer: function() {
+      return this.manager.data['ytwStatus'];
+    }
   },
   watch: {
     timelineBuffer: function(newTL, oldTL) {
       this.latestId = this.timelineBuffer.length - 1;
     }
-  }
+  },
+  mounted: function() {
+    this.manager.run();
+  },
 };
 </script>
 <style lang="scss">
