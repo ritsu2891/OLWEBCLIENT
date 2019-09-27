@@ -13,26 +13,35 @@ class BaseManager {
     this.sources = [];
   }
 
+  init() {
+    for (let src of this.sources) {
+      this.data[src] = [];
+    }
+  }
+
   run() {
-    this.getAll();
+    const self = this;
+    self.getAll();
     setInterval(function () {
-      this.getNew();
-    }, this.fetchInterval);
+      self.getNew();
+    }, self.fetchInterval);
   }
 
   getAll() {
+    const self = this;
     for (let src of this.sources) {
       API.requestDBData(src).then(function (res) {
-        this.saveData(src, res.data);
+        self.saveData(src, res.data);
       });
     }
   }
 
   getNew() {
+    const self = this;
     for (let src of this.sources) {
-      API.requestDBData(src).then(function (res) {
-        this.saveData(src, res.data);
-        this.newDataAttrReply(src, res.data);
+      API.requestNewDBData(src, this.lastid).then(function (res) {
+        self.saveData(src, res.data);
+        self.newDataAttrReply(src, res.data);
       });
     }
   }
