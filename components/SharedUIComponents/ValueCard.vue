@@ -3,7 +3,7 @@
     <div class="valueCard" v-if="!small">
       <div class="row">
         <div class="col align-self-center">
-          <div class="valueCard__label" :style="{'text-align': badge ? 'left' : ''}">{{label}}</div>
+          <div class="valueCard__label" :style="{'text-align': badge ? 'left' : ''}"><template v-html="label"></template></div>
         </div>
         <div class="col-auto">
           <div
@@ -24,7 +24,7 @@
     </div>
     <div class="row valueCard" v-if="small">
       <div class="col-5 align-self-center">
-        <div class="valueCard__label">{{label}}</div>
+        <div class="valueCard__label"><span v-html="label"></span></div>
       </div>
       <div class="col-7 align-self-center">
         <div class="valueCard__val valueCard__val--small" :id="`value-${label}`">
