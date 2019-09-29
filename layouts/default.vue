@@ -1,14 +1,23 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">フロントエンドデモ</a>
+      <a class="navbar-brand" href="#">オープンラボWEBクライアント</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#">ホーム <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/">呼吸周期推定</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/yamashita">車輪異物検知</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/tsujisenpai">足音人数推定</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/test">UIコンポーネントサンプル</a>
           </li>
         </ul>
       </div>
