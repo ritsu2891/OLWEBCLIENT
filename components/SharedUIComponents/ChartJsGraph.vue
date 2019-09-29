@@ -1,10 +1,11 @@
 <template>
-    <div>
-        <canvas id="graph"></canvas>
-    </div>
+    <canvas id="graph"></canvas>
 </template>
 
 <script>
+import { Chart } from "chart.js";
+require('~/components/chartjs-chart-stem.js')
+
 import API from '~/components/API'
 import GraphDataManager from '~/components/GraphDataManager.js'
 
@@ -20,13 +21,13 @@ export default {
 
     var ctx = document.getElementById('graph').getContext('2d');
     this.myChart = new Chart(ctx, {
-      type: 'line',
+      type: 'stem',
       data: {
         labels: [],
         datasets: [{
           label: '波形',
           data: [],
-          backgroundColor: 'rgba(0, 0, 0, 0)',
+          backgroundColor: 'rgba(0,0,0,0)',
           borderColor: 'rgba(255, 99, 132, 1)',
           pointRadius: 0,
         }],
@@ -51,9 +52,3 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-#graph {
-    width: 1000px;
-    height: 500px;
-}
-</style>
