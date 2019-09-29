@@ -13,6 +13,8 @@
   </div>
 </template>
 <script>
+import { Chart } from "chart.js";
+
 export default {
   props: ["labels", "datas", "images"],
   data() {
