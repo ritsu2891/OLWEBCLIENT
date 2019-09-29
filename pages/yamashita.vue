@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-fluid py-3 px-5">
     <!-- <button v-on:click="add">追加</button> -->
     <LiveMap
       class="primaryMap"

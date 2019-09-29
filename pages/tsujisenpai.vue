@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-fluid py-3 px-5">
     <div style="position: relative;">
       <HumanPict :nPerson="live && live.data ? live.data : 0"></HumanPict>
       <div style="width: 400px; position: absolute; right: 0; top: 0;">
