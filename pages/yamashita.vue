@@ -24,7 +24,7 @@
             <StatusInfo
               :status="STATUS[item.status].status"
               :detail="STATUS[item.status].detail"
-              :detailImage="STATUS[item.status].status.detailImage"
+              :detailImage="STATUS[item.status].detailImage"
             ></StatusInfo>
 
             <DLResultView v-if="item.obstacle" :labels="DL.labels" :images="DL.images" :datas="item.obstacle"></DLResultView>

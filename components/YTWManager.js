@@ -11,14 +11,14 @@ const STATUS = {
   0: {
     status: '正常',
     detail: '列車は正常に運行しています',
-    detailImage: 'check.png',
+    detailImage: '/check.png',
     icon: "●",
     iconTextColor: "green",
   },
   1: {
     status: '異物検知',
     detail: '車輪に異物が挟まっている可能性があります',
-    detailImage: 'wheelzoom.png',
+    detailImage: '/wheelzoom.png',
     icon: '▲',
     iconTextColor: 'red',
   }
