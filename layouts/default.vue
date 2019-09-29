@@ -13,9 +13,6 @@
         </ul>
       </div>
     </nav>
-
-    <div style="height: 20px;"></div>
-
     <nuxt />
   </div>
 </template>
