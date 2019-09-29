@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     initCanvas: function() {
-      const VW = 1000;
+      const VW = 1500;
       const VH = 550;
 
       this.app = new PIXI.Application({
