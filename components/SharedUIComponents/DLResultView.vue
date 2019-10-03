@@ -65,7 +65,7 @@ export default {
       }
     };
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < this.datas.length; i++) {
       const ctx = document
         .getElementById(`canvas${this.id}${i}`)
         .getContext("2d");
