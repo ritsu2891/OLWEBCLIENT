@@ -66,7 +66,7 @@ export default {
   },
   computed: {
     timelineBuffer: function() {
-      return this.manager.data['ytwStatus'].reverse();
+      return this.manager.data['ytwStatus'].slice().reverse();
     }
   },
   watch: {
