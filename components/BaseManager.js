@@ -8,7 +8,7 @@ class BaseManager {
   constructor() {
     this.lastid = -1;
     this.data = {};
-    this.datetimeFormat = DateTime.TIME_24_SIMPLE;
+    this.datetimeFormat = DateTime.TIME_24_WITH_SECONDS;
     this.fetchInterval = 1000; //[ms]
     this.sources = [];
   }
