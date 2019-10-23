@@ -21,7 +21,7 @@ export default {
 
     var ctx = document.getElementById('graph').getContext('2d');
     this.myChart = new Chart(ctx, {
-      type: 'stem',
+      type: 'line',
       data: {
         labels: [],
         datasets: [{
