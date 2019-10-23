@@ -3,7 +3,7 @@
     <div class="valueCard" v-if="!small">
       <div class="row">
         <div class="col align-self-center">
-          <div class="valueCard__label" :style="{'text-align': badge ? 'left' : ''}"><template v-html="label"></template></div>
+          <div class="valueCard__label" :style="{'text-align': badge ? 'left' : ''}"><span v-html="label"></span></div>
         </div>
         <div class="col-auto">
           <div

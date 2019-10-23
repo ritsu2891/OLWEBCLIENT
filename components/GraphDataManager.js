@@ -12,7 +12,7 @@ function init() {
 }
 
 async function shouldFetch(which) {
-    return true;
+    // return true;
     var lUpdateDateTimeInfo = convertDateTime(await API.requestDBData(ENDPOINT));
     which = API.ENDPOINT[which];
     var res = updateDateTimeInfo[which] < lUpdateDateTimeInfo[which]
