@@ -25,7 +25,6 @@ $pinLngth: 50px;
   }
 
   & > * > * {
-    width: 400px;
     float: left;
     transition: transform 200ms 0s ease, opacity 200ms 100ms ease;
 
@@ -64,12 +63,13 @@ export default {
   computed: {
     items: function() {
       return this.$children[0].$children;
-    }
+    },
   },
   mounted: function() {
     this.nItems = this.items.length;
   },
   updated: function() {
+    const latestItem = this.items[this.items.length-1];
     if (this.items.length > this.nItems) {
       const self = this;
       var classChanger = function() {
@@ -81,8 +81,13 @@ export default {
           }
         });
       };
+      var higlighter = function() {
+        latestItem.$el.classList.toggle("tlhilightEl");
+      }
       classChanger();
       setTimeout(classChanger, 10);
+      setTimeout(higlighter, 50);
+      // setTimeout(higlighter, 1080);
     }
     this.nItems = this.items.length;
   }
