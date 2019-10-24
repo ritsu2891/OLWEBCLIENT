@@ -18,8 +18,9 @@
             :time="item.datetime"
             icon="▲"
             icon-text-color="red"
+            class="pr-3 pb-3"
           >
-            <div class="shadow bg-light p-3">
+            <div class="shadow bg-light p-3" style="width: 480px;">
               <StatusInfo detail="警戒セット中に人の歩行を検知しました。" detailImage="warning.png" ></StatusInfo>
               <ValueCard label="検出人数" :val="item.data" unit="人" :small="true"></ValueCard>
             </div>
