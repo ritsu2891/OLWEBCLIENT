@@ -18,7 +18,6 @@
           :time="item.datetime"
           :icon="STATUS[item.status].icon"
           :icon-text-color="STATUS[item.status].iconTextColor"
-          class="mr-3"
         >
           <div class="p-3 m-1 bg-light shadow" style="width: 400px;">
             <StatusInfo
@@ -27,7 +26,26 @@
               :detailImage="STATUS[item.status].detailImage"
             ></StatusInfo>
 
-            <DLResultView v-if="item.obstacle" :labels="DL.labels" :images="DL.images" :datas="item.obstacle"></DLResultView>
+            <DLResultView
+              v-if="item.obstacle"
+              :labels="DL.labels"
+              :images="DL.images"
+              :datas="item.obstacle"
+            ></DLResultView>
+          </div>
+        </TimeLabeledContent>
+        <TimeLabeledContent
+          time="--：--"
+          icon="●"
+          icon-text-color="black"
+          key="tlifirst"
+        >
+          <div class="p-3 m-1" style="width: 400px; height: 200px; border: 2px black dashed;">
+            <div class="row justify-content-center" style="height: 100%">
+              <div class="col align-self-center" style="font-size: x-large;" align="center">
+                分類結果はここに表示されます
+              </div>
+            </div>
           </div>
         </TimeLabeledContent>
       </TimeLine>
@@ -61,12 +79,12 @@ export default {
       latestId: -1,
       manager: new YTW.YTWManager(),
       DL: YTW.DL,
-      STATUS: YTW.STATUS,
+      STATUS: YTW.STATUS
     };
   },
   computed: {
     timelineBuffer: function() {
-      return this.manager.data['ytwStatus'].slice().reverse();
+      return this.manager.data["ytwStatus"].slice().reverse();
     }
   },
   watch: {
@@ -76,7 +94,7 @@ export default {
   },
   mounted: function() {
     this.manager.run();
-  },
+  }
 };
 </script>
 <style lang="scss">
