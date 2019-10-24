@@ -51,7 +51,7 @@ export default {
   },
   computed: {
     timeline: function() {
-      return this.manager.data.tfs.splice().reverse();
+      return this.manager.data["tfs"].slice().reverse();
     },
     live: function() {
       return this.timeline[0];
