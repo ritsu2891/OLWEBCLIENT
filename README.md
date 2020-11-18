@@ -7,6 +7,7 @@
 </div>
 
 <br/>
+
 ![動作イメージ](https://github.com/ritsu2891/OpenLab-WEBClient/raw/master/mdimg/train.gif)
 
 ## 概要
