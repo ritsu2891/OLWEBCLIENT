@@ -1,19 +1,29 @@
-# OLWEBCLIENT
-Simple Data Graph Web Application with Nuxt.js
+<div align="center" style="vertical-align: center;">
+  <h1>OpenLab-WEBClient</h1>
+  <h1>オープンラボ デモ用Webクライアント</h1>
+  <img src="https://github.com/ritsu2891/OpenLab-WEBClient/raw/master/mdimg/js.png" height="80px" />
+  <img src="https://github.com/ritsu2891/OpenLab-WEBClient/raw/master/mdimg/vue.svg" height="80px" />
+  <img src="https://github.com/ritsu2891/OpenLab-WEBClient/raw/master/mdimg/chartjs.svg" height="80px" />
+</div>
 
-DBに書き込んだデータをグラフで表示するWEBアプリケーションです。研究室で作成するデモに向けて作成しました。[OLCOMDIS](https://github.com/ritsu2891/OLCOMDIS)と一緒に使う事で、データロガーからデータを読み込みグラフで表示するまでの流れが出来上がります。本リポジトリにはフロントエンド部分のみをおいています。バックエンドは検証時には[SQLer](https://github.com/alash3al/sqler)を使っています。（設定ファイルはこのリポジトリの`backend/config.hcl`）
+![動作イメージ](https://github.com/ritsu2891/OpenLab-WEBClient/raw/master/mdimg/train.gif)
 
-## 動作画面イメージ
-![screenshot](https://user-images.githubusercontent.com/25300684/63503337-3c171000-c50a-11e9-884e-ea45663bc3ba.png)
+## 概要
 
-## 想定環境
-最新のCrome, FirefoxまたはSafari。検証は基本的にChromeでしか行っていませんが、最新のAPIを直接使ってはいないので多分動く（？）
+DB に書き込んだデータをグラフで表示する WEB アプリケーションです。研究室で作成するデモに向けて作成しました。
 
-## 利用ライブラリ等
-開発にはNuxt.jsを使っています。ライブラリのインストール等については[公式のドキュメント](https://nuxtjs.org/guide/commands)をご覧下さい。
-表示関係では**Bootstrap**および**Chart.js**を使っていますが、普通にURLで読み込むので特にインストール等は必要ありません。
+## 背景
 
-## 現時点（2019/08/22）で実現した機能
-- 特定のテーブルのデータでグラフを壁画（更新の度に全て書き換え）
-- 特定のテーブルのデータのレコードの値一つを表示
-- 特定のテーブルについて更新する必要があるかを、更新日時記録テーブルのレコードを参照して判定する -> 不要な壁画更新は行わない ※OLCOMDIS側でまだ対応できていません
+研究成果を発表するデモにおいて端末鵜の画面のように一般の人にとって表示が分かりづらいと、何をやっているかのイメージがつきづらいと思ったので、実際にシステムに応用したときにどんなシステムになるかを想像して Web ブラウザによりインターフェースを作成しました。単に分類結果を文字で示すのではなく、図や色で示すことで何を表しているのかが理解しやすくなるように努めました。
+
+## 機能
+
+### 異音検知
+
+![異音検知動作イメージ](https://github.com/ritsu2891/OpenLab-WEBClient/raw/master/mdimg/train.gif)
+プラレールの車輪に物が挟まっているか、また挟まっているものは何なのかという推定をするデモに対するインターフェースです。運行管理システムを想像し、列車お現在位置を飾りとして表示し異音の検知結果を時系列で画面下部に表示しています。
+
+### 足音による人数推定
+
+![足音による人数推定動作イメージ](https://github.com/ritsu2891/OpenLab-WEBClient/raw/master/mdimg/road.gif)
+足音を 1 つのマイクで拾ってそこから何人が歩いているのかを推定するというデモに対するインターフェースです。防犯システムを想像し、画面上で「警戒」セット中に 1 人以上の足音を検知したら時系列でその結果を画面下部に表示し、画面上部に推定人数に応じた絵を表示します。
