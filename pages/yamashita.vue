@@ -4,7 +4,7 @@
     <LiveMap
       class="primaryMap"
       width="100%"
-      style="height: 600px; width: 100%;"
+      style="height: 600px; width: 100%; z-index: -1;"
       :mapCenter="[136.893865, 35.157141]"
       :zoom="11.8"
       ref="map"
@@ -93,7 +93,33 @@ export default {
     }
   },
   mounted: function() {
-    this.manager.run();
+    // this.manager.run();
+    this.manager.saveData("ytwStatus", [
+      {
+        "id": 0,
+        "datetime": "2019-11-01 06:00:00.000",
+        "status": 0
+      },
+    ]);
+    window.setTimeout(() => {
+      this.manager.saveData("ytwStatus", [
+        {
+          "id": 1,
+          "datetime": "2019-11-01 06:00:05.000",
+          "status": 1,
+          "obstacle": [80, 10, 10]
+        }
+      ])
+    }, 5000);
+    window.setTimeout(() => {
+      this.manager.saveData("ytwStatus", [
+        {
+          "id": 2,
+          "datetime": "2019-11-01 06:00:10.000",
+          "status": 0
+        }
+      ])
+    }, 10000);
   }
 };
 </script>

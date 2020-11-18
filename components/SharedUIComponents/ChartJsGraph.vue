@@ -26,7 +26,7 @@ export default {
         labels: [],
         datasets: [{
           label: '波形',
-          data: [],
+          data: [30, 31, 34, 31, 30, 31, 34, 31, 30, 31, 34, 31, 30, 31, 34, 31, 30, 31, 34, 31, 30, 31, 34, 31, 30, 31, 34, 31, 30, 31, 34, 31, 30, 31, 34, 31, 30, 31, 34, 31, 30, 31, 34, 31, 30, 31, 34, 31, 30, 31, 34, 31, 30, 31, 34, 31, 30, 31, 34, 31, 30, 31, 34, 31, 30, 31, 34, 31, 30, 31, 34, 31, 30, 31, 34, 31, 30, 31, 34, 31],
           backgroundColor: 'rgba(0,0,0,0)',
           borderColor: 'rgba(255, 99, 132, 1)',
           pointRadius: 0,
@@ -48,7 +48,7 @@ export default {
       }
     });
 
-    GraphDataManager.startManage(this.myChart, 'rawSignal', 'replaceAll');
+    // GraphDataManager.startManage(this.myChart, 'rawSignal', 'replaceAll');
   }
 }
 </script>
