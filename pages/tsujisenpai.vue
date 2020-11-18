@@ -69,7 +69,27 @@ export default {
     }
   },
   mounted: function() {
-    this.manager.run();
+    // this.manager.run();
+    window.setTimeout(() => {
+      this.manager.saveData("tfs", [
+      {
+        "id": 0,
+        "datetime": "2019-11-01 06:05:00.000",
+        "status": 0,
+        "data": 2,
+      },
+    ]);
+    }, 5000);
+    window.setTimeout(() => {
+      this.manager.saveData("tfs", [
+      {
+        "id": 1,
+        "datetime": "2019-11-01 06:10:00.000",
+        "status": 0,
+        "data": 1,
+      },
+    ]);
+    }, 10000);
   }
 };
 </script>

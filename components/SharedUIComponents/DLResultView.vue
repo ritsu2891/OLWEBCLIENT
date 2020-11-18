@@ -22,7 +22,7 @@ export default {
     labels: {},
     datas: {},
     images: {},
-    showGraph: { type: Boolean, default: false }
+    showGraph: { type: Boolean, default: true }
   },
   data() {
     return {
